@@ -15,13 +15,8 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		TMBd.get(
-			`search/movie?api_key=19b7484b16487bbecac75bf455e0c742&query=${movieTerm}`
-		).then((res) => {
-			console.log(res);
-			const data = res.data;
-			setMovieList(data.results);
-		});
+		const response = async fetch("https://api.themoviedb.org/3/movie/343611?api_key=19b7484b16487bbecac75bf455e0c742")
+	
 	}, [movieTerm]);
 
 	return (
