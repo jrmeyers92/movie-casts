@@ -8,7 +8,7 @@ import Movies from "./Movies";
 
 const App = () => {
 	const [movieTerm, setMovieTerm] = useState("");
-	const [movieList, setMovieList] = useState([]);
+	// const [movieList, setMovieList] = useState([]);
 
 	const searchSubmit = (term) => {
 		setMovieTerm(term);
@@ -20,18 +20,18 @@ const App = () => {
 			fetch(
 				`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieTerm}`
 			)
-				.then((response) => response.json())
-				.then((data) => console.log(data))
-				.then(
-					fetch(
-						`https://api.themoviedb.org/3/movie/${data.results[0].id}?api_key=${apiKey}&language=en-US`
-					)
-						.then((response) => response.json)
-						.then((data) => console.log(data))
-				);
-		};
+				.then((response) => {
+					return response.json();
+				})
+				.then((data) => {
+					console.log(data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 
-		response();
+			response();
+		};
 	}, [movieTerm]);
 
 	return (
